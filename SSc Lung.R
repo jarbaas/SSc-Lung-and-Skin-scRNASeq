@@ -54,7 +54,7 @@ FeaturePlot(ssc, features = c("COL1A1", "PDGFRA", "FN1"))
 fibroblasts <- subset(ssc, idents = c(1, 10))
 
 Idents(fibroblasts) <- fibroblasts$orig.ident
-cpm <- AggregateExpression(fibroblasts, return.seurat = TRUE)
+cpm <- AverageExpression(fibroblasts, return.seurat = TRUE)
 cpm <- NormalizeData(cpm, normalization.method = "RC", scale.factor = 1e6, verbose= TRUE)
 ssclung_cpm <- LayerData(cpm, assay = "RNA", layer = "data")
 write.csv(ssclung_cpm, "ssc_lung_cpm_updated.csv")
